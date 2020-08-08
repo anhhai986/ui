@@ -53,7 +53,7 @@ $wizard->addStep('User Interface', function ($page) {
 
     $t->addParagraph('It all has started with a "Button" though:');
 
-    Demo::addTo($page)->setCode('\atk4\ui\Button::addTo($app, [\'Hello from the button!\']);');
+    Demo::addTo($page)->setCode('\atk4\ui\Button::addTo($page, [\'Hello from the button!\']);');
 });
 
 $wizard->addStep('Interactivity', function ($page) {
@@ -67,7 +67,7 @@ $wizard->addStep('Interactivity', function ($page) {
 
     Demo::addTo($page)->setCode(
         <<<'CODE'
-            $button = \atk4\ui\Button::addTo($app, ["Click for the greeting!"]);
+            $button = \atk4\ui\Button::addTo($page, ["Click for the greeting!"]);
             $button->on('click', function() {
                 return 'Hello World!';
             });
@@ -86,7 +86,7 @@ $wizard->addStep('Interactivity', function ($page) {
     Demo::addTo($page)->setCode(
         <<<'CODE'
 
-            $seg = \atk4\ui\View::addTo($app, ['ui'=>'segment']);
+            $seg = \atk4\ui\View::addTo($page, ['ui'=>'segment']);
 
             \atk4\ui\Text::addTo($seg)->set('Number of buttons: ');
 
@@ -144,12 +144,12 @@ $wizard->addStep('Business Model', function ($page) {
                 $_SESSION['x'][$model->id] = $model->get();
             });
 
-            \atk4\ui\Form::addTo($app)
+            \atk4\ui\Form::addTo($page)
                 ->setModel($model)->tryLoad(1);
 
-            \atk4\ui\View::addTo($app, ['ui'=>'divider']);
-            \atk4\ui\Button::addTo($app, ['Refresh', 'icon'=>'refresh'])
-                ->on('click', $app->jsReload());
+            \atk4\ui\View::addTo($page, ['ui'=>'divider']);
+            \atk4\ui\Button::addTo($page, ['Refresh', 'icon'=>'refresh'])
+                ->on('click', $page->jsReload());
 
             CODE
     );
@@ -195,7 +195,7 @@ $wizard->addStep('Persistence', function ($page) {
             });
 
             $model->tryLoad(1);
-            \atk4\ui\Card::addTo($app)->setModel($model, ['date']);
+            \atk4\ui\Card::addTo($page)->setModel($model, ['date']);
 
             CODE
     );
